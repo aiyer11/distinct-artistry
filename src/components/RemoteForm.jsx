@@ -13,7 +13,14 @@ const RemoteForm = () => {
     callTime: '',
     endTime: '',
     cateringProvided: '',
-    cateringLocation: ''
+    cateringLocation: '',
+    talentList: [{
+      name: '',
+      servicesRequested: '',
+      specialInstructions: ''
+    }],
+    jobCode: '',
+    sendInvoiceTo: '',
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -31,11 +38,46 @@ const RemoteForm = () => {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitStatus(null);
+
+    const talentText = formData.talentList
+    .filter(talent => talent.name || talent.servicesRequested)
+    .map((talent, index) => 
+      `Talent #${index + 1}:<br>` +
+      `• Name: ${talent.name || 'Not specified'}<br>` +
+      `• Services: ${talent.servicesRequested || 'Not specified'}<br>` +
+      `• Instructions: ${talent.specialInstructions || 'None'}<br>`
+    )
+    .join('\n') || 'No talent information provided';
+
+    const templateParams = {
+      // Regular fields
+      eventName: formData.eventName,
+      jobDate: formData.jobDate,
+      jobLocation: formData.jobLocation,
+      jobAddress: formData.jobAddress,
+      artistSetupLocation: formData.artistSetupLocation,
+      onsitePOC: formData.onsitePOC,
+      callTime: formData.callTime,
+      endTime: formData.endTime,
+      cateringProvided: formData.cateringProvided || 'No',
+      cateringLocation: formData.cateringProvided === 'Yes' 
+        ? formData.cateringLocation 
+        : 'Not applicable',
+    
+      // Modified talent list structure
+      talentText: talentText,
+      jobCode:formData.jobCode,
+      sendInvoiceTo:formData.sendInvoiceTo
+    };
+
+    console.log('Template Params Structure:', {
+      ...templateParams
+    });
     
     emailjs.send(
         'service_svu0bjm',
         'template_vntx7mw',
-        formData,
+        templateParams,
         '-WTcB5w8p5vo3Hqtv'
       )
       .then((response) => {
@@ -50,7 +92,14 @@ const RemoteForm = () => {
             callTime: '',
             endTime: '',
             cateringProvided: '',
-            cateringLocation: ''
+            cateringLocation: '',
+            talentList: [{
+              name: '',
+              servicesRequested: '',
+              specialInstructions: ''
+            }],
+            jobCode: '',
+            sendInvoiceTo: ''
         });
       }, (error) => {
         console.error('Failed to send email:', error);
@@ -61,9 +110,32 @@ const RemoteForm = () => {
       });
     };
 
+    const handleTalentChange = (index, e) => {
+      const { name, value } = e.target;
+      const updatedTalent = [...formData.talentList];
+      updatedTalent[index][name] = value;
+      setFormData({...formData, talentList: updatedTalent});
+    };
+    
+    const addTalentField = () => {
+      setFormData({
+        ...formData,
+        talentList: [...formData.talentList, { name: '', servicesRequested: '', specialInstructions: '' }]
+      });
+    };
+    
+    const removeTalentField = (index) => {
+      const updatedTalent = [...formData.talentList];
+      updatedTalent.splice(index, 1);
+      setFormData({...formData, talentList: updatedTalent});
+    };
+
   return (
     <div className="event-form-container">
-      <h2>Event Details Form</h2>
+      <div className="form-logo-container">
+        <img src='Distinct Logo.jpg' alt="Distinct Logo"className="form-logo"/>
+     </div>
+      <h2>Remote Template</h2>
       <form onSubmit={handleSubmit}>
         {/* Event Name */}
         <div className="form-group">
@@ -209,7 +281,99 @@ const RemoteForm = () => {
             />
           </div>
         )}
-        
+
+        <div className="talent-section full-width">
+          <h3>Talent List</h3>
+          
+          {formData.talentList.map((talent, index) => (
+            <div key={index} className="talent-entry">
+              <div className="talent-input-group">
+                <div className="form-group talent-field">
+                  <label>Name</label>
+                  <input
+                    type="text"
+                    name="name"
+                    value={talent.name}
+                    onChange={(e) => handleTalentChange(index, e)}
+                    required
+                  />
+                </div>
+                
+                <div className="form-group talent-field">
+                  <label>Services Requested</label>
+                  <input
+                    type="text"
+                    name="servicesRequested"
+                    value={talent.servicesRequested}
+                    onChange={(e) => handleTalentChange(index, e)}
+                    required
+                  />
+                </div>
+                
+                <div className="form-group talent-field">
+                  <label>Special Instructions</label>
+                  <input
+                    type="text"
+                    name="specialInstructions"
+                    value={talent.specialInstructions}
+                    onChange={(e) => handleTalentChange(index, e)}
+                    required
+                  />
+                </div>
+              </div>
+              
+              {formData.talentList.length > 1 && (
+                <div className="remove-btn-container">
+                  <button
+                    type="button"
+                    className="remove-talent-btn"
+                    onClick={() => removeTalentField(index)}
+                  >
+                    Remove
+                  </button>
+                </div>
+              )}
+            </div>
+          ))}
+          
+          <button
+            type="button"
+            className="add-talent-btn"
+            onClick={addTalentField}
+          >
+            + Add Another Talent
+          </button>
+        </div>
+
+                {/* Job Code and Invoice Email - Revised */}
+        <div className="dual-field-group full-width">
+          <div className="form-group">
+            <label htmlFor="jobCode">Job Code:</label>
+            <input
+              type="text"
+              id="jobCode"
+              name="jobCode"
+              value={formData.jobCode}
+              onChange={handleChange}
+              className="light-gray-field"
+              style={{ width: '100%' }}
+            />
+          </div>
+          
+          <div className="form-group">
+            <label htmlFor="sendInvoiceTo">Send Invoice To:</label>
+            <input
+              type="email"
+              id="sendInvoiceTo"
+              name="sendInvoiceTo"
+              value={formData.sendInvoiceTo}
+              onChange={handleChange}
+              className="light-gray-field"
+              style={{ width: '100%' }}
+            />
+          </div>
+        </div>
+
         <button type="submit" disabled={isSubmitting}>
           {isSubmitting ? 'Submitting...' : 'Submit Event Details'}
         </button>
