@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/www.distinctartistry.com/static/css/main.b88b08de.css",
-    "main.js": "/www.distinctartistry.com/static/js/main.f98dc1f4.js",
-    "static/js/453.6e4e2545.chunk.js": "/www.distinctartistry.com/static/js/453.6e4e2545.chunk.js",
-    "index.html": "/www.distinctartistry.com/index.html",
-    "main.b88b08de.css.map": "/www.distinctartistry.com/static/css/main.b88b08de.css.map",
-    "main.f98dc1f4.js.map": "/www.distinctartistry.com/static/js/main.f98dc1f4.js.map",
-    "453.6e4e2545.chunk.js.map": "/www.distinctartistry.com/static/js/453.6e4e2545.chunk.js.map"
+    "main.css": "/distinct-artistry/static/css/main.b88b08de.css",
+    "main.js": "/distinct-artistry/static/js/main.96b40df1.js",
+    "static/js/453.6e4e2545.chunk.js": "/distinct-artistry/static/js/453.6e4e2545.chunk.js",
+    "index.html": "/distinct-artistry/index.html",
+    "main.b88b08de.css.map": "/distinct-artistry/static/css/main.b88b08de.css.map",
+    "main.96b40df1.js.map": "/distinct-artistry/static/js/main.96b40df1.js.map",
+    "453.6e4e2545.chunk.js.map": "/distinct-artistry/static/js/453.6e4e2545.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.b88b08de.css",
-    "static/js/main.f98dc1f4.js"
+    "static/js/main.96b40df1.js"
   ]
 }
