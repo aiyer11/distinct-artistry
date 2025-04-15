@@ -9,7 +9,7 @@ const RemoteForm = () => {
     jobLocation: '',
     jobAddress: '',
     artistSetupLocation: '',
-    onsitePOC: '',
+    espnCoordinatorEmail: '',
     callTime: '',
     endTime: '',
     cateringProvided: '',
@@ -56,7 +56,7 @@ const RemoteForm = () => {
       jobLocation: formData.jobLocation,
       jobAddress: formData.jobAddress,
       artistSetupLocation: formData.artistSetupLocation,
-      onsitePOC: formData.onsitePOC,
+      espnCoordinatorEmail: formData.espnCoordinatorEmail,
       callTime: formData.callTime,
       endTime: formData.endTime,
       cateringProvided: formData.cateringProvided || 'No',
@@ -88,7 +88,7 @@ const RemoteForm = () => {
             jobLocation: '',
             jobAddress: '',
             artistSetupLocation: '',
-            onsitePOC: '',
+            espnCoordinatorEmail: '',
             callTime: '',
             endTime: '',
             cateringProvided: '',
@@ -204,12 +204,12 @@ const RemoteForm = () => {
         
         {/* On Site POC */}
         <div className="form-group">
-          <label htmlFor="onsitePOC">On Site Point of Contact:</label>
+          <label htmlFor="espnCoordinatorEmail">ESPN Coordinator Email:</label>
           <input
-            type="text"
-            id="onsitePOC"
-            name="onsitePOC"
-            value={formData.onsitePOC}
+            type="email"
+            id="espnCoordinatorEmail"
+            name="espnCoordinatorEmail"
+            value={formData.espnCoordinatorEmail}
             onChange={handleChange}
             required
           />
