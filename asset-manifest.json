@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/remote.distinctartistry.com/static/css/main.3b7b04f4.css",
-    "main.js": "/remote.distinctartistry.com/static/js/main.22387a93.js",
-    "static/js/453.6e4e2545.chunk.js": "/remote.distinctartistry.com/static/js/453.6e4e2545.chunk.js",
-    "index.html": "/remote.distinctartistry.com/index.html",
-    "main.3b7b04f4.css.map": "/remote.distinctartistry.com/static/css/main.3b7b04f4.css.map",
-    "main.22387a93.js.map": "/remote.distinctartistry.com/static/js/main.22387a93.js.map",
-    "453.6e4e2545.chunk.js.map": "/remote.distinctartistry.com/static/js/453.6e4e2545.chunk.js.map"
+    "main.css": "/static/css/main.3b7b04f4.css",
+    "main.js": "/static/js/main.67331e55.js",
+    "static/js/453.6e4e2545.chunk.js": "/static/js/453.6e4e2545.chunk.js",
+    "index.html": "/index.html",
+    "main.3b7b04f4.css.map": "/static/css/main.3b7b04f4.css.map",
+    "main.67331e55.js.map": "/static/js/main.67331e55.js.map",
+    "453.6e4e2545.chunk.js.map": "/static/js/453.6e4e2545.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.3b7b04f4.css",
-    "static/js/main.22387a93.js"
+    "static/js/main.67331e55.js"
   ]
 }
