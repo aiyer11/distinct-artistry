@@ -2,7 +2,7 @@
   "name": "distinct-artistry",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://aiyer11.github.io/distinct-artistry/",
+  "homepage": "remote.distinctartistry.com",
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
     "@testing-library/dom": "^10.4.0",
